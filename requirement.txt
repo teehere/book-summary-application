@@ -1,0 +1,7 @@
+langchain
+langchain-google-genai
+langchain_core.prompts
+langchain_core.output_parsers
+langchain_core.runnables
+dotenv
+streamlit
