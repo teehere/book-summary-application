@@ -36,4 +36,6 @@ streamlit run app.py
 The application will open in your browser
 
 ## Demo
-<img width="500" height="576" alt="image" src="https://github.com/user-attachments/assets/9e6ba203-fddd-4b37-9531-71f321b7dfde" />
+<img width="420" height="476" alt="image" src="https://github.com/user-attachments/assets/9e6ba203-fddd-4b37-9531-71f321b7dfde" />
+<img width="420" height="476" alt="image" src="https://github.com/user-attachments/assets/1f407432-7ff8-4dc3-9023-30909ab31aec" />
+
