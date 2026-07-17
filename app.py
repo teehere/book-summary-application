@@ -25,6 +25,8 @@ option = st.radio(
 def load_llm(): 
     return ChatGoogleGenerativeAI(temperature=0.8, model='gemini-3-flash-preview', max_retries=3)
 llm = load_llm()
+
+# parser 
 parser = StrOutputParser()
 
 #1 - book summary
@@ -65,13 +67,22 @@ full_chain = (
     )
 )
 
+# external source: wikipedia
 wiki = WikipediaQueryRun(
     api_wrapper = WikipediaAPIWrapper() 
 )
 
 agent = create_agent(
     model=llm,
-    tools=[wiki]
+    tools=[wiki],
+    system_prompt="""
+    You are a book information assistant.
+
+    Always use WikipediaQueryRun when the user asks
+    about a book.
+
+    Do not answer from your own knowledge.
+    """
 )
 
 if input_book and st.button("Run"):
@@ -108,8 +119,15 @@ if input_book and st.button("Run"):
                     }
                 )
 
+            #st.subheader("Wikipedia Result")
+            #st.write(response["messages"][-1].content)
+            final_response = response["messages"][-1].content
+
+            if isinstance(final_response, list):
+                final_response = final_response[0]["text"]
+
             st.subheader("Wikipedia Result")
-            st.write(response["messages"][-1].content)
+            st.write(final_response)
 
         except Exception as e:
             st.error(f"Error: {e}") 
